@@ -1,23 +1,22 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { render } from 'react-dom';
 import { Provider as AppProvider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
+import { BrowserRouter, Route } from 'react-router-dom';
+
 import reducers from './reducers';
+import PostsIndex from './components/posts-index';
 
 const createStoreWithMiddleware = applyMiddleware()(createStore);
 const appRoot = document.querySelector('#root');
 
-const App = () => (
-  <div className="grid-x grid-margin-x">
-    <div className="cell">
-      Yo
-    </div>
-  </div>
-);
-
 render(
   <AppProvider store={createStoreWithMiddleware(reducers)}>
-    <App />
+    <BrowserRouter>
+      <Fragment>
+        <Route path="/" component={ PostsIndex } />
+      </Fragment>
+    </BrowserRouter>
   </AppProvider>, 
   appRoot,
 );
