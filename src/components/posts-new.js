@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import { Field, reduxForm } from 'redux-form';
+
 import FormField from './shared/form-field';
 
 class PostsNew extends Component {
