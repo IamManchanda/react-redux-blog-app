@@ -36,6 +36,8 @@ module.exports = {
     'prefer-const': 0,
     'global-require': 0,
     'max-len': 0,
+    'class-methods-use-this': 0,
+    'no-nested-ternary': 0,
     'react/prop-types': 0,
     'react/jsx-filename-extension': 0,
     'react/jsx-curly-spacing': 0,
@@ -43,6 +45,12 @@ module.exports = {
     'react/jsx-one-expression-per-line': 0,
     'react/jsx-wrap-multilines': 0,
     'jsx-a11y/label-has-for': 0, // Depreciated
+    "jsx-a11y/label-has-associated-control": [ 2, {
+      "labelComponents": ["CustomInputLabel"],
+      "labelAttributes": ["label"],
+      "controlComponents": ["CustomInput"],
+      "depth": 3,
+    }],
     // Never use these last 3 in a real application... I mean never!
     'no-alert': 0,
     'no-console': 0,
