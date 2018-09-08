@@ -1,27 +1,17 @@
 import React, { Component, Fragment } from 'react';
 import { Field, reduxForm } from 'redux-form';
+import FormField from './shared/form-field';
 
 class PostsNew extends Component {
-  renderField(field) {
-    return (
-      <Fragment>
-        <label htmlFor={ field.formAssociation }>{ field.formLabel }</label>
-        { (field.formType === 'textarea') ? (
-          <textarea id={ field.formAssociation } placeholder={ `Enter ${field.formLabel}` } { ...field.input } rows="3" />
-        ) : (
-          <input type={ field.formType } id={ field.formAssociation } placeholder={ `Enter ${field.formLabel}` } { ...field.input } />
-        ) }
-      </Fragment>
-    ); 
-  }
+  renderField(field) { return <FormField { ...field } />; }
 
   render() {
     return (
       <Fragment>
         <form>
-          <Field name="title" component={ this.renderField } formLabel="Title" formAssociation="form-title" formType="text" />
-          <Field name="categories" component={ this.renderField } formLabel="Categories" formAssociation="form-categories" formType="text" />
-          <Field name="content" component={ this.renderField } formLabel="Content" formAssociation="form-content" formType="textarea" />
+          <Field component={ this.renderField } name="title" formLabel="Title" formAssociation="form-title" formType="text" />
+          <Field component={ this.renderField } name="categories" formLabel="Categories" formAssociation="form-categories" formType="text" />
+          <Field component={ this.renderField } name="content" formLabel="Content" formAssociation="form-content" formType="textarea" />
         </form>
       </Fragment>
     );
