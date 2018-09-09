@@ -1,12 +1,34 @@
 import React, { Fragment } from 'react';
 
-export default ({ formAssociation, formLabel, formType, input }) => (
+export default ({ formAssociation, formLabel, formType, input, meta: { touched, error } }) => (
   <Fragment>
-    <label htmlFor={ formAssociation }>{ formLabel }</label>
+    <label 
+      className={ (touched && error) ? 'is-invalid-label' : '' } 
+      htmlFor={ formAssociation }
+    >
+      { formLabel }
+    </label>
     { (formType === 'textarea') ? (
-      <textarea id={ formAssociation } placeholder={ `Enter ${formLabel}` } { ...input } rows="3" />
+      <textarea 
+        className={ (touched && error) ? 'is-invalid-input' : '' } 
+        id={ formAssociation } 
+        placeholder={ `Enter ${formLabel}` } 
+        { ...input } 
+        rows="3" 
+      />
     ) : (
-      <input type={ formType } id={ formAssociation } placeholder={ `Enter ${formLabel}` } { ...input } />
+      <input 
+        className={ (touched && error) ? 'is-invalid-input' : '' } 
+        type={ formType } 
+        id={ formAssociation } 
+        placeholder={ `Enter ${formLabel}` } 
+        { ...input } 
+      />
     ) }
+    { (touched && error) ? (
+      <span className="form-error">
+        { error }
+      </span>
+    ) : null }
   </Fragment>
 );

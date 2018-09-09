@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import _ from 'lodash';
+import { map as $map } from 'lodash';
 
 import { fetchPosts } from '../actions';
 
@@ -14,13 +14,13 @@ class PostsIndex extends Component {
 
   renderPosts() {
     const { posts } = this.props;
-    return _.map(posts, (post) => {
+    return $map(posts, (post) => {
       return (
         <Fragment key={ post.id }>
           <li className="list-group-item">
-            <p>{ post.title }</p>
-            <p>{ post.categories }</p>
-            <p>{ post.content }</p>
+            <Link to={ `/posts/${post.id}` }>
+              <p>{ post.title }</p>
+            </Link>
           </li>
         </Fragment>
       );
@@ -28,11 +28,12 @@ class PostsIndex extends Component {
   }
 
   render() {
+    const { posts } = this.props;
     return (
       <Fragment>
         <h3 className="float-left">Posts</h3>
         <div className="float-right">
-          <Link className="button primary" to="/posts/new">
+          <Link className="button primary small" to="/posts/new">
             Add a Post
           </Link>
         </div>
@@ -45,8 +46,7 @@ class PostsIndex extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  const { posts } = state;
+const mapStateToProps = ({ posts }) => {
   return { posts };
 };
 

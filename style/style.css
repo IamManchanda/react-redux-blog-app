@@ -14,7 +14,7 @@
 }
 
 .list-group-item {
-  padding: 1rem;
+  padding: 1rem 1rem 0;
   border-bottom: 1px solid #e6e6e6;
 }
 
@@ -43,6 +43,22 @@
   background-color: #fefefe;
 }
 
+.list-group-item a {
+  color: inherit;
+}
+
 .is-anchor {
   cursor: pointer;
+}
+
+.form-error {
+  display: block;
+}
+
+.button-group .button.submit-button {
+  margin-right: .25rem;
+}
+
+.button-group .button.cancel-button {
+  margin-left: .25rem;
 }

@@ -1,11 +1,18 @@
-import _ from 'lodash';
+import { mapKeys as $mapKeys, omit as $omit } from 'lodash';
 
-import { FETCH_POSTS } from '../../actions';
+import { FETCH_POSTS, FETCH_POST, DELETE_POST } from '../../actions';
 
 export default (state = {}, action) => {
   switch (action.type) {
+    case DELETE_POST:
+      return $omit(state, action.payload);
+    case FETCH_POST:
+      return {
+        ...state, 
+        [action.payload.data.id]: action.payload.data,
+      };
     case FETCH_POSTS:
-      return _.mapKeys(action.payload.data, 'id');
+      return $mapKeys(action.payload.data, 'id');
     default:
       return state;
   }
